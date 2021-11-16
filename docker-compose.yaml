@@ -1,0 +1,25 @@
+version: '3'
+services:
+  orchestration:
+    image: nginx:1.21.4-alpine
+    container_name: mf_orchestration
+    ports:
+      - "80:80"
+    volumes:
+      - ./packages/orchestration:/usr/share/nginx/html
+  btn1:
+    image: nginx:1.21.4-alpine
+    container_name: mf_btn1
+    ports:
+      - "81:80"
+    volumes:
+      - ./packages/front1:/etc/nginx/html
+      - ./packages/front1/nginx.conf:/etc/nginx/conf.d/default.conf
+  btn2:
+    image: nginx:1.21.4-alpine
+    container_name: mf_btn2
+    ports:
+      - "82:80"
+    volumes:
+      - ./packages/front2:/etc/nginx/html
+      - ./packages/front2/nginx.conf:/etc/nginx/conf.d/default.conf
